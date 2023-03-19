@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "esp32s3",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "E:/learn/esp32/code/esp-idf/components/**"
+            ],
+            "defines": [],
+            "compilerPath": "E:/learn/esp32/code_tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-gcc.exe",
+            "intelliSenseMode": "${default}",
+            "cStandard": "c99",
+            "cppStandard": "c++11",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
