@@ -1,2 +1,2 @@
-idf_component_register(SRCS "fontx.c" "st7789.c" "hello_world_main.c"
+idf_component_register(SRCS   "hello_world_main.c" "ws2812.c"
                     INCLUDE_DIRS "")

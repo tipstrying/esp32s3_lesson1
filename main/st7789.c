@@ -313,6 +313,38 @@ void lcdDrawMultiPixels(TFT_t *dev, uint16_t x, uint16_t y, uint16_t size, uint1
     spi_master_write_colors(dev, colors, size);
 }
 
+void lcd_driver_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map)
+{
+    TFT_t *tf1 = (TFT_t *)drv->user_data;
+    uint8_t data[4] = {0};
+
+    uint16_t offsetx1 = area->x1;
+    uint16_t offsetx2 = area->x2;
+    uint16_t offsety1 = area->y1;
+    uint16_t offsety2 = area->y2;
+
+    offsetx1 += 52;
+    offsetx2 += 52;
+    offsety1 += 40;
+    offsety2 += 40;
+
+    /*Column addresses*/
+    spi_master_write_command(tf1, 0X2A);
+    spi_master_write_addr(tf1, offsetx1, offsety1);
+
+    /*Page addresses*/
+    spi_master_write_command(tf1, 0X2B);
+    spi_master_write_addr(tf1, offsetx2, offsety2);
+
+    /*Memory write*/
+    spi_master_write_command(tf1, 0X2C);
+
+    size_t size = (size_t)lv_area_get_width(area) * (size_t)lv_area_get_height(area);
+    // gpio_set_level(9, 1);
+    printf("send %d bytes\n", size);
+    spi_master_write_colors(tf1, (void *)color_map, size);
+}
+
 // Draw rectangle of filling
 // x1:Start X coordinate
 // y1:Start Y coordinate

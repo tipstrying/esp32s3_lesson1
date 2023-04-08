@@ -76,4 +76,6 @@ void lcdBacklightOff(TFT_t *dev);
 void lcdBacklightOn(TFT_t *dev);
 void lcdInversionOff(TFT_t *dev);
 void lcdInversionOn(TFT_t *dev);
+#include "lvgl.h"
+void lcd_driver_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_map);
 #endif /* MAIN_ST7789_H_ */
